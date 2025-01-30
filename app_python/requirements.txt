@@ -1,2 +1,2 @@
-Flask==<version>
+Flask==3.0.3
 pytz

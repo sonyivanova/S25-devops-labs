@@ -29,6 +29,25 @@ This is a simple Python web application that displays the current time in Moscow
 4. **Access the App:**
    Open your web browser and go to `http://127.0.0.1:5000`.
 
+## Docker Instructions
+
+1. **Build the image**
+```sh
+docker build -t sonyaiv/python_app .
+```
+
+2. **Run the container**
+```sh
+docker run --rm -p 5000:5000 sonyaiv/python_app
+```
+
+3. **Pull from Docker Hub**
+```sh
+docker pull sonyaiv/python_app
+docker run -d -p 5000:5000 sonyaiv/python_app
+```
+
+
 ## Requirements
 - Flask
 - pytz
@@ -50,4 +69,15 @@ __pycache__/
 .env
 .vscode/
 venv/
+```
+
+## .dockerignore
+```
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.DS_Store
+.env
 ```
