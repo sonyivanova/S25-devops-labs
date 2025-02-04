@@ -26,10 +26,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r app_python/requirements.txt
 
       - name: Lint with Flake8
-        run: flake8 app.py tests/
+        run: flake8 app_python/app.py app_python/tests/
 
       - name: Run unit tests
         run: python -m unittest discover tests
@@ -50,6 +50,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
+          cd app_python
           docker build -t myapp:latest .
           docker tag myapp:latest mydockerhubuser/myapp:latest
           docker push mydockerhubuser/myapp:latest
