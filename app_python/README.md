@@ -1,12 +1,22 @@
 ## Overview
-This is a simple Python web application that displays the current time in Moscow. It uses the Flask framework and follows best practices. The time updates every time the page is refreshed.
+This is a simple Python web application that displays the current time in Moscow. It uses the Flask framework and follows best practices. The simple design is done with HTML.
 
 ![alt text](image.png)
 
 ## Features
 - Displays the current time in Moscow.
-- Updates the displayed time dynamically upon page refresh.
+- Updates the displayed time dynamically.
 - Simple and lightweight.
+
+## CI Workflow
+
+This project uses **GitHub Actions** for Continuous Integration (CI).
+
+1. **Dependency Installation** - Installs required Python packages.
+2. **Code Linting** - Ensures code follows best practices.
+3. **Unit Tests** - Runs tests to validate the app.
+4. **Docker Build & Push** - Builds and pushes a container image.
+
 
 ## Local Installation
 
@@ -27,7 +37,7 @@ This is a simple Python web application that displays the current time in Moscow
    ```
 
 4. **Access the App:**
-   Open your web browser and go to `http://127.0.0.1:5000`.
+   Open your web browser and go to `http://127.0.0.1:5000` or `http://10.80.18.164:5000`.
 
 ## Docker Instructions
 
@@ -47,6 +57,12 @@ docker pull sonyaiv/python_app
 docker run -d -p 5000:5000 sonyaiv/python_app
 ```
 
+## Unit Tests
+
+**Run Unit Tests**
+```bash
+python -m unittest test_app.py
+```
 
 ## Requirements
 - Flask
