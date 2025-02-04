@@ -29,9 +29,7 @@ jobs:
           pip install -r app_python/requirements.txt
 
       - name: Run unit tests
-        run: |
-        cd app_python
-        python -m unittest discover tests
+        run: python -m unittest discover tests
 
   docker-build:
     needs: build-and-test
