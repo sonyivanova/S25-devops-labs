@@ -18,8 +18,10 @@ class FlaskAppTestCase(unittest.TestCase):
         mock_datetime.strftime.return_value = fake_time.strftime('%Y-%m-%d %H:%M:%S')
 
         response = self.client.get("/")
+        response_data = response.data.decode()
         self.assertEqual(response.status_code, 200)
-        self.assertIn("Current Time in Moscow:", response.data.decode())
+        self.assertIn("Current Time in Moscow", response_data)
+        self.assertRegex(response_data, r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}")
 
     def test_invalid_route(self):
         """Test that an invalid route returns a 404 error."""
