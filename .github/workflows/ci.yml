@@ -51,5 +51,5 @@ jobs:
         run: |
           cd app_python
           docker build -t myapp:latest .
-          docker tag myapp:latest mydockerhubuser/myapp:latest
-          docker push mydockerhubuser/myapp:latest
+          docker tag myapp:latest sonyaiv/myapp:latest
+          docker push sonyaiv/myapp:latest
