@@ -1,6 +1,13 @@
+## Best practices applied
 
+1. **Code organization**
+    - The code is devided into separate files (`main.tf`, `variables.tf`, and `outputs.tf`) for modularity purpouses.
 
+2. **Security**
+    - Sensitive information like tokens and passwords are not explicitly used in code.
 
+3. **Version Control**
+    - Versions of Terraform and other requirements are specified, to avoid possible conflict.
 
 
 ## Docker
@@ -95,3 +102,4 @@ docker_container.my_container
 
 ## Yandex Cloud 
 
+To create terraform for Yandex, I followed [this Yandex Quickstart Guide](https://yandex.cloud/en-ru/docs/tutorials/infrastructure-management/terraform-quickstart#linux_1). I had some issues regarding tokens and setting up a service account, so I used my own. Installing Terraform as well as Yandex Cloud CLI was simple and fast. I created the needed files according to the guide and made some changes later.
