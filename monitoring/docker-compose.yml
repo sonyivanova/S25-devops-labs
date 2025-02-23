@@ -13,6 +13,19 @@ services:
       - "5000:5000"
     networks:
       - loki
+    environment:
+      - LOG_LEVEL=info
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD", "pgrep", "python"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # Loki Service
   loki:
@@ -26,6 +39,17 @@ services:
     command: -config.file=/etc/loki/loki-config.yaml
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD", "pgrep", "loki"]
+      timeout: 5s
+      retries: 5
+      start_period: 5s
 
   # Promtail Service
   promtail:
@@ -40,6 +64,17 @@ services:
       - loki
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    mem_limit: 256m
+    healthcheck:
+      test: ["CMD", "pgrep", "promtail"]
+      timeout: 5s
+      retries: 5
+      start_period: 5s
 
   # Grafana Service
   grafana:
@@ -76,3 +111,48 @@ services:
       - ./grafana/data:/var/lib/grafana
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    mem_limit: 512m
+    depends_on:
+      loki:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/config:/etc/prometheus
+      - ./prometheus/data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus-config.yml'
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    mem_limit: 512m
+    depends_on:
+      loki:
+        condition: service_healthy
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "pgrep", "prometheus"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
