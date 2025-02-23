@@ -24,12 +24,7 @@ This document describes the setup of Prometheus, Grafana, and Loki for metrics a
   ![Prometheus Dashboard](screenshots/prometheus_dashboard2.png)
   ![Prometheus Dashboard](screenshots/prometheus_dashboard3.png)
   ![Prometheus Dashboard](screenshots/prometheus_dashboard4.png)
-
-  ![alt text](image-3.png)
-  ![alt text](image-4.png)
-  ![alt text](image-5.png)
-  ![alt text](image-6.png)
-
+  
 ## Service Configuration Enhancements
 
 - **Log Rotation**: Configured for all services using `json-file` driver with `max-size: 10m` and `max-file: 3`.
