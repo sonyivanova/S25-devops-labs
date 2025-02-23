@@ -19,7 +19,7 @@ This document describes the logging stack setup using **Grafana Loki**, **Promta
 - **Configuration**: Queries and displays logs stored in Loki.
 - **Port**: `3000`
 
-![alt text](screenshots\docker-compose.png)
+![alt text](screenshots/docker-compose.png)
 
 ## Setup
 
@@ -33,9 +33,9 @@ This document describes the logging stack setup using **Grafana Loki**, **Promta
 ## Screenshots
 
 ### All Logs
-![alt text](screenshots\app1.png)
-![alt text](screenshots\app2.png)
+![alt text](screenshots/app1.png)
+![alt text](screenshots/app2.png)
 
 ### Python App Logs
-![alt text](screenshots\py_app1.png)
-![alt text](screenshots\py_app2.png)
+![alt text](screenshots/py_app1.png)
+![alt text](screenshots/py_app2.png)
