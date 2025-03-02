@@ -55,4 +55,4 @@ S25-devops-labs>minikube service \--all
 ! Because you are using a Docker driver on windows, the terminal needs to be open to run it.
 ```
 
-![App in browser](image.png)
+![App in browser](kubernetes_image.png)
