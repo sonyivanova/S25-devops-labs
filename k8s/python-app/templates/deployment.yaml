@@ -16,6 +16,9 @@ spec:
       {{- with .Values.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "internal-app"
+        vault.hashicorp.com/agent-inject-secret-database-config: "internal/data/database/config"
       {{- end }}
       labels:
         {{- include "python-app.labels" . | nindent 8 }}
@@ -40,6 +43,12 @@ spec:
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: API_KEY
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
