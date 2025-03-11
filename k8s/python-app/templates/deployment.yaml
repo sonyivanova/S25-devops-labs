@@ -49,6 +49,12 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: API_KEY
+          envFrom:
+            - configMapRef:
+                name: app-config
+                items:
+                  - key: config.json
+                    path: config.json
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -68,6 +74,9 @@ spec:
           {{- with .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
+            - name: config-volume
+              mountPath: /config.json
+              subPath: config.json
           {{- end }}
       {{- with .Values.volumes }}
       volumes:

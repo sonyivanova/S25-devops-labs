@@ -26,6 +26,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    volumes:
+      - ./visits:/visits
 
   # Loki Service
   loki:

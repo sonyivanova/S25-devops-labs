@@ -18,6 +18,10 @@ This project uses **GitHub Actions** for Continuous Integration (CI).
 4. **Docker Build & Push** - Builds and pushes a container image.
 
 
+## Visits
+Added an endpoint `/visits` - a counter of times the application was accessed. The current count of visits is taken from `visits/visits.txt`.
+
+
 ## Local Installation
 
 1. **Clone the Repository:**

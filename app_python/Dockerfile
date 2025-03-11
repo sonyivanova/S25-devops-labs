@@ -18,6 +18,8 @@ COPY requirements.txt .
 # Install dependencies without cache to reduce image size
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY visits/ visits/
+
 COPY /templates /app/templates
 
 # Copy application files
